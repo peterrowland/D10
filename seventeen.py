@@ -22,18 +22,30 @@ def player_turn(m_remain):
         try:
             p_remove = int(input('How Many Marbles will you remove (1-3)?'))
         except:
-            print('Please enter only integers.')
+            print('Please enter only integers')
+            p_remove = ''
+
+        # Check number is valid
+        if bool(check_remain(m_remain, p_remove)):
+            print('number is valid!')
+
+        else:
+            print('Number out of range or greater than remaining marbles.')
+            p_remove = ''
+
 
         # Checking p_remove in range and not > m_remain
-        assert p_remove in range(1,3) and (p_remove < m_remain)
+        # assert p_remove in range(1,3) and (p_remove < m_remain)
         # AssertionError: "Number out of range or greater than remaining marbles."
         # Branch: Seventeen assert errors
 
     return p_remove
 
-def check_remain(marbles_remain, remove):
+def check_remain(m_remain, remove):
     '''Simple function for both turn functions to use.'''
-    return bool((marbles_remain - remove) >= 0)
+    in_range = bool(remove in range(1,4))
+    not_negative = bool(remove <= m_remain)
+    return (in_range and not_negative)
 
 def seventeen(playlist=[]):
     '''Game Loop. Takes a play argument for v2'''
