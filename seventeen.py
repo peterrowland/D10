@@ -12,7 +12,7 @@ def computer_turn(m_remain, last_turn):
 
     return c_remove
 
-def player_turn(marbles_remain):
+def player_turn(m_remain):
     ''' Returns # removed by player.
         Handles input errors.'''
     p_remove = ''
@@ -23,7 +23,7 @@ def player_turn(marbles_remain):
         except:
             print('Please enter only integers.')
 
-        assert p_remove in range(1,3)
+        assert p_remove in range(1,3) and (m_remain - p_remove >= 0)
 
     return p_remove
 
@@ -90,7 +90,8 @@ def main():
 
 ##############################################################################
     # TESTS
-    print(p_remove(17))  # 
+    # print(player_turn(17))  # TEST1: ASSERTION ERROR is OK for range
+    print(player_turn(2))  # TEST2: ASSERTION ERROR is OK for remove > remain
 
 
 if __name__ == '__main__':
