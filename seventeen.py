@@ -7,7 +7,7 @@
 
 # Body
 def computer_turn(m_remain, last_turn):
-    ''' Returns # removed by computer. '''
+    ''' Returns # removed by computer. Computer logic goes here.'''
     c_remove = last_turn + 1
 
     return c_remove
@@ -15,9 +15,21 @@ def computer_turn(m_remain, last_turn):
 def player_turn(marbles_remain):
     ''' Returns # removed by player.
         Handles input errors.'''
-    p_remove = int(input('How Many Marbles will you remove (1-3)?'))
+    p_remove = ''
+
+    while p_remove == '':
+        try:
+            p_remove = int(input('How Many Marbles will you remove (1-3)?'))
+        except:
+            print('Please enter only integers.')
+
+        assert p_remove in range(1,3)
 
     return p_remove
+
+def check_remain(marbles_remain, remove):
+    '''Simple function for both turn functions to use.'''
+    return bool((marbles_remain - remove) >= 0)
 
 def seventeen(playlist=[]):
     '''Game Loop. Takes a play argument for v2'''
@@ -72,7 +84,14 @@ def seventeen(playlist=[]):
     print(msg)
 ##############################################################################
 def main():
-    seventeen()
+    # seventeen()
+
+
+
+##############################################################################
+    # TESTS
+    print(p_remove(17))  # 
+
 
 if __name__ == '__main__':
     main()
