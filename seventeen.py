@@ -69,16 +69,20 @@ def seventeen(playlist=[]):
 
         # Call player_turn
         if player_last == False:
+
+            # Get player input
             print('Your turn:', end=' ')
             p_remove = player_turn(marbles_remain)
-
-            print(p_remove)
-            break
+            print("You removed {} marbles.".format(p_remove))
 
             # Update game state
-            marbles_removed = marbles_removed - p_remove
+            marbles_remain = marbles_remain - p_remove
             last_turn = p_remove
             player_last = True
+
+            # Print remaining marbles, next turn
+            print("Number of marbles left in jar: {}".format(marbles_remain))
+            print('')
 
         # Call computer_turn
         else:
@@ -87,11 +91,11 @@ def seventeen(playlist=[]):
             print("Computer removed {} marbles.".format(c_remove))
 
             # Update game state
-            marbles_removed = marbles_removed - c_remove
+            marbles_remain = marbles_remain - c_remove
             last_turn = c_remove
             player_last = False
 
-            # Print remaining marbles
+            # Print remaining marbles, next turn
             print("Number of marbles left in jar: {}".format(marbles_remain))
             print('')
 
