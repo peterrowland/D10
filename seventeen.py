@@ -24,13 +24,13 @@ def seventeen(playlist=[]):
 
     # Variables
     marbles_remain = 17
-    last_turn = 16 # TEST.
+    last_turn = 0
     player_last = False
     msg = "Let's play the game of Seventeen!"
 
     # main loop condition
     print(msg)
-    while marbles_remain > 17:
+    while marbles_remain > 0:
 
         # Call player_turn
         if player_last == False:
