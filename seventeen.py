@@ -7,8 +7,16 @@
 
 # Body
 def computer_turn(m_remain, last_turn):
-    ''' Returns # removed by computer. Computer logic goes here.'''
-    c_remove = last_turn + 1
+    ''' Returns # removed by computer.'''
+
+    # Strategy Logic
+    c_remove = min((last_turn + 1), 3)
+
+    # Check to take all the marbles
+    last_check = check_remain(m_remain, c_remove)
+
+    if last_check == False:
+        c_remove = m_remain
 
     return c_remove
 
@@ -25,12 +33,11 @@ def player_turn(m_remain):
             print('Please enter only integers')
             p_remove = ''
 
-        # Check number is valid
+        # Check number is valid or return to input
         if bool(check_remain(m_remain, p_remove)):
-            print('number is valid!')
-
+            return p_remove
         else:
-            print('Number out of range or greater than remaining marbles.')
+            print('Number out of range (1-3) or greater than remaining marbles.')
             p_remove = ''
 
 
@@ -106,9 +113,13 @@ def main():
 
 ##############################################################################
     # TESTS
-    # print(player_turn(17))  # TEST1: ASSERTION ERROR is OK for range
-    print(player_turn(2))  # TEST2: ASSERTION ERROR is OK for remove > remain
+    # print(player_turn(17))  # TEST1: OK
+    # print(player_turn(5))  # TEST2: OK
+    # print(computer_turn(1, 2)) # == 1, OK
+    # print(computer_turn(5, 3)) # == 3, OK
+    # print(computer_turn(2,3)) # == 2, OK
 
+    seventeen()
 
 if __name__ == '__main__':
     main()
