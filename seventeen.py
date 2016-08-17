@@ -15,8 +15,9 @@ def computer_turn(m_remain, last_turn):
 def player_turn(marbles_remain):
     ''' Returns # removed by player.
         Handles input errors.'''
+    p_remove = int(input('How Many Marbles will you remove (1-3)?'))
 
-    # return p_remove
+    return p_remove
 
 def seventeen(playlist=[]):
     '''Game Loop. Takes a play argument for v2'''
@@ -33,7 +34,17 @@ def seventeen(playlist=[]):
 
         # Call player_turn
         if player_last == False:
-            pass
+            print('Your turn:', end=' ')
+            p_remove = player_turn(marbles_remain)
+
+            print(p_remove)
+            break
+
+            # Update game state
+            marbles_removed = marbles_removed - p_remove
+            last_turn = p_remove
+            player_last = True
+
         # Call computer_turn
         else:
             print("Computer's turn...")
@@ -45,11 +56,11 @@ def seventeen(playlist=[]):
             last_turn = c_remove
             player_last = False
 
-            #
+            # Print remaining marbles
             print("Number of marbles left in jar: {}".format(marbles_remain))
             print('')
 
-    # Game over determine winner
+    # Game Over, determine winner
     winner = ''
     if player_last == True:
         winner = 'Computer'
