@@ -18,12 +18,16 @@ def player_turn(m_remain):
     p_remove = ''
 
     while p_remove == '':
+        # Checking input
         try:
             p_remove = int(input('How Many Marbles will you remove (1-3)?'))
         except:
             print('Please enter only integers.')
 
-        assert p_remove in range(1,3) and (m_remain - p_remove >= 0)
+        # Checking p_remove in range and not > m_remain
+        assert p_remove in range(1,3) and (p_remove < m_remain)
+        # AssertionError: "Number out of range or greater than remaining marbles."
+        # Branch: Seventeen assert errors
 
     return p_remove
 
